@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <%- include('./partials/head.ejs') %>
+    <title>Home Page</title>
+
+</head>
+<body>
+   <%- include('./partials/nav.ejs') %>
+
+   <div class="container mt-3 d-flex flex-row flex-wrap ">
+      <% allBlogs.forEach(blog => { %>
+         <div class="card m-3" style="width: 18rem;">
+            <img class="card-img-top" src="<%= blog.coverImageURL %>" alt="cover Image">
+            <div class="card-body">
+              <h5 class="card-title"><%= blog.title %></h5>
+              <p class="card-text">
+               <% if (blog.body.length > 120) { %>
+                <%= blog.body.substring(0,120) + "..." %>
+               <% } else { %>
+                <%= blog.body %>
+               <% } %>
+              </p>
+            </div>
+            <a href="/blog/<%= blog._id %>" target="_blank" class="btn btn-primary m-4">View</a>
+          </div>
+      <% }) %>
+   </div>
+
+   <%- include('./partials/scripts.ejs') %>
+</body>
+</html>
